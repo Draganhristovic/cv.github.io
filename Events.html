@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
+    <title>Events</title>
+    <style>
+        html, body {
+            position: absolute;
+            margin: 0 auto;
+            padding: 0px;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+        }
+
+        .cardMouse {
+        	height: 245px !important;
+        }
+
+        .cardKeyboard {
+        	height: 325px !important;
+        }
+
+        .card-title-style {
+        	width: 100%;
+        	color: white;
+        	padding: 5px;
+        	text-align: center;
+        }
+
+        tr {
+        	line-height: 10px;
+        }
+    </style>
+    <script>
+        function dugme(d) {
+            switch (d) {
+                case 1:
+                    return "Left";
+                case 2:
+                    return "Right";
+                case 4:
+                    return "Middle";
+                case 8:
+                    return "Browser Back";
+                case 16:
+                    return "Browser Forward";
+            }
+        }
+
+        function deltaMode(mode) {
+            switch (mode) {
+                case 0:
+                    return "pixels";
+                case 1:
+                    return "lines";
+                case 2:
+                    return "pages";
+            }
+        }
+
+        function clearTable(table) {
+        	var rowCount = table.rows.length;
+
+			for (i = 0; i < rowCount; i++) {
+   				table.deleteRow(0);
+			}
+        }
+
+        function addCells(table, key, value) {
+            var row = table.insertRow();
+            var cell1 = row.insertCell();
+            var cell2 = row.insertCell();
+
+            cell1.innerHTML = key;
+            cell2.innerHTML = value;
+        }
+
+        function mouseDown(e) {
+            var table = document.getElementById("mouseDownDogadjaj");
+            clearTable(table);
+            addCells(table, "Button", dugme(e.buttons));
+            addCells(table, "X", e.screenX);
+            addCells(table, "Y", e.screenY);
+        }
+
+        function mouseUp(e) {
+            var table = document.getElementById("mouseUpDogadjaj");
+            clearTable(table);
+            addCells(table, "X", e.screenX);
+            addCells(table, "Y", e.screenY);
+        }
+
+        function mouseMove(e) {
+            var table = document.getElementById("mouseMoveDogadjaj");
+            clearTable(table);
+            addCells(table, "X", e.screenX);
+            addCells(table, "Y", e.screenY);
+        }
+
+        function mouseWheel(e) {
+            var table = document.getElementById("mouseWheelDogadjaj");
+            clearTable(table);
+            addCells(table, "DeltaX", e.deltaX);
+            addCells(table, "DeltaY", e.deltaY);
+            addCells(table, "DeltaZ", e.deltaZ);
+            addCells(table, "Delta mode", deltaMode(e.deltaMode));
+        }
+
+        function keyDown(e) {
+            var table = document.getElementById("keyDownDogadjaj");
+            clearTable(table);
+            addCells(table, "Ctrl", e.ctrlKey);
+            addCells(table, "Alt", e.altKey);
+            addCells(table, "Shift", e.shiftKey);
+            addCells(table, "Key", e.key);
+            addCells(table, "Key code", e.keyCode);
+            addCells(table, "Repeat", e.repeat);
+        }
+
+        function keyUp(e) {
+            var table = document.getElementById("keyUpDogadjaj");
+            clearTable(table);
+            addCells(table, "Ctrl", e.ctrlKey);
+            addCells(table, "Alt", e.altKey);
+            addCells(table, "Shift", e.shiftKey);
+            addCells(table, "Key", e.key);
+            addCells(table, "Key code", e.keyCode);
+            addCells(table, "Repeat", e.repeat);
+        }
+
+        function keyPress(e) {
+            var table = document.getElementById("keyPressDogadjaj");
+            clearTable(table);
+            addCells(table, "Ctrl", e.ctrlKey);
+            addCells(table, "Alt", e.altKey);
+            addCells(table, "Shift", e.shiftKey);
+            addCells(table, "Key", e.key);
+            addCells(table, "Repeat", e.repeat);
+        }
+    </script>
+</head>
+<body onmousedown="mouseDown(event)" onmouseup="mouseUp(event)" onmousemove="mouseMove(event)" onwheel="mouseWheel(event)" onkeydown="keyDown(event)" onkeyup="keyUp(event)" onkeypress="keyPress(event)">
+    <div class="container">
+        <div class="row">
+            <div class="col s3 m3 l3 xl3">
+            	<div class="card blue darken-1 cardMouse">
+            		<div class="card-title-style blue darken-3">
+      					<span class="card-title"><b>Down</b></span>
+      				</div>
+        			<div class="card-content white-text">
+        				<table id="mouseDownDogadjaj">
+        					<tbody>
+        					</tbody>
+      					</table>
+        			</div>
+      			</div>
+            </div>
+            <div class="col s3 m3 l3 xl3">
+            	<div class="card green lignten-1 cardMouse">
+            		<div class="card-title-style green darken-3">
+      					<span class="card-title"><b>Up</b></span>
+      				</div>
+        			<div class="card-content white-text">
+                		<table id="mouseUpDogadjaj">
+                			<tbody>
+        					</tbody>
+                		</table>
+                	</div>
+                </div>
+            </div>
+            <div class="col s3 m3 l3 xl3">
+            	<div class="card deep-orange darken-2 cardMouse">
+            		<div class="card-title-style deep-orange darken-4">
+      					<span class="card-title"><b>Move</b></span>
+      				</div>
+        			<div class="card-content white-text">
+                		<table id="mouseMoveDogadjaj">
+                			<tbody>
+        					</tbody>
+                		</table>
+            		</div>
+            	</div>
+            </div>
+            <div class="col s3 m3 l3 xl3">
+            	<div class="card red darken-1 cardMouse">
+            		<div class="card-title-style red darken-4">
+      					<span class="card-title"><b>Wheel</b></span>
+      				</div>
+        			<div class="card-content white-text">
+                		<table id="mouseWheelDogadjaj">
+                			<tbody>
+        					</tbody>
+                		</table>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4 m4 l4 xl4">
+            	<div class="card deep-purple darken-1 cardKeyboard">
+            		<div class="card-title-style deep-purple darken-4">
+      					<span class="card-title"><b>Key down</b></span>
+      				</div>
+        			<div class="card-content white-text">
+                		<table id="keyDownDogadjaj">
+                			<tbody>
+        					</tbody>
+                		</table>
+                	</div>
+                </div>
+            </div>
+            <div class="col s4 m4 l4 xl4">
+            	<div class="card cyan darken-2 cardKeyboard">
+            		<div class="card-title-style cyan darken-4">
+      					<span class="card-title"><b>Key up</b></span>
+      				</div>
+        			<div class="card-content white-text">
+                		<table id="keyUpDogadjaj">
+                			<tbody>
+        					</tbody>
+                		</table>
+                	</div>
+                </div>
+            </div>
+            <div class="col s4 m4 l4 xl4">
+            	<div class="card teal darken-3 cardKeyboard">
+            		<div class="card-title-style teal darken-4">
+      					<span class="card-title"><b>Key press</b></span>
+      				</div>
+        			<div class="card-content white-text">
+                		<table id="keyPressDogadjaj">
+                			<tbody>
+        					</tbody>
+                		</table>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
